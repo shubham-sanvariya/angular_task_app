@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component,EventEmitter,Input, Output } from '@angular/core';
+import { Component,Input, output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -11,7 +11,7 @@ import { Component,EventEmitter,Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input() text: string = '';
   @Input() color: string = '';
-  @Output() btnclick = new EventEmitter()
+  btnclick = output();
 
   onClick(){
     this.btnclick.emit();

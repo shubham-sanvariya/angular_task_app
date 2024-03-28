@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, output } from '@angular/core';
 import { Task } from '../../Task';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -10,9 +10,14 @@ import { NgStyle } from '@angular/common';
   standalone: true,
   imports: [FontAwesomeModule,NgStyle],
   templateUrl: './task-item.component.html',
-  styleUrl: './task-item.component.css'
+  styleUrl: './task-item.component.css',
 })
 export class TaskItemComponent {
-  @Input() task: Task | undefined;
+  @Input() task!: Task;
+  onDeleteTask = output<Task>();
   faTimes = faTimes;
+
+  onDelete(task: Task) {
+    this.onDeleteTask.emit(task);
+  }
 }

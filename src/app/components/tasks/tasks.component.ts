@@ -16,8 +16,9 @@ export class TasksComponent {
 
   constructor(private taskService : TaskService){
     this.taskService.getTasks()
-    .subscribe((tasks) => {
-      this.tasks = tasks;
+    .subscribe({
+      next : (tasks) => {this.tasks = tasks},
+      error : (error) => {console.log(error)}
     });
   }
 }

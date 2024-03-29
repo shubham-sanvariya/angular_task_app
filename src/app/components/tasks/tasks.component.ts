@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
 })
 export class TasksComponent {
   tasks: Task[] = [];
-  tasks$: Observable<Task[]> = this.taskService.getTasks();
   handler = {
     next: (tasks: Task[]) => { 
       this.tasks = structuredClone(tasks)
@@ -23,7 +22,10 @@ export class TasksComponent {
   };
   constructor(private taskService : TaskService){
     this.taskService.getTasks()
-      .subscribe(this.handler);
+      .subscribe({
+        next : (tasks) => {this.tasks = tasks},
+        error : (error) => {console.log(error)}
+      });
   }
 
   deleteTask(task : Task){

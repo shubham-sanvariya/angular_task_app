@@ -3,12 +3,12 @@ import { Task } from '../../Task';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [FontAwesomeModule,NgStyle],
+  imports: [FontAwesomeModule,NgStyle,NgClass],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css',
 })

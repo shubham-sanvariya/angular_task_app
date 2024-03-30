@@ -15,9 +15,13 @@ import { NgClass, NgStyle } from '@angular/common';
 export class TaskItemComponent {
   @Input() task!: Task;
   onDeleteTask = output<Task>();
+  onToggleReminder = output<Task>();
   faTimes = faTimes;
 
   onDelete(task: Task) {
     this.onDeleteTask.emit(task);
+  }
+  onToggle(task: Task) {
+    this.onToggleReminder.emit(task);
   }
 }

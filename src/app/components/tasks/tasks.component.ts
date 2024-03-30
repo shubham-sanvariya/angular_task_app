@@ -3,7 +3,6 @@ import { Task } from '../../Task';
 import { NgFor } from '@angular/common';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { TaskService } from '../../services/task.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -37,6 +36,16 @@ export class TasksComponent {
           .subscribe(this.handler); 
       }, 
       error: (error) => { console.log(error)}
+    })
+  }
+
+  toggleReminder(task : Task){
+    task.reminder = !task.reminder;
+    console.log(task.reminder);
+    this.taskService.updateTaskReminder(task)
+    .subscribe({
+      next: () => {console.log("task updated")},
+      error: (error) => {console.log(error)}
     })
   }
 }

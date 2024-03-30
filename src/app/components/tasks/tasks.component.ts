@@ -3,11 +3,12 @@ import { Task } from '../../Task';
 import { NgFor } from '@angular/common';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { TaskService } from '../../services/task.service';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [NgFor,TaskItemComponent],
+  imports: [NgFor,TaskItemComponent,AddTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -45,6 +46,17 @@ export class TasksComponent {
     this.taskService.updateTaskReminder(task)
     .subscribe({
       next: () => {console.log("task updated")},
+      error: (error) => {console.log(error)}
+    })
+  }
+
+  addTask(task : Task) {
+    this.taskService.addTask(task)
+    .subscribe({
+      next: () => {
+        this.taskService.getTasks()
+        .subscribe(this.handler);
+      },
       error: (error) => {console.log(error)}
     })
   }

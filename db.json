@@ -23,6 +23,12 @@
       "text": "eating",
       "day": "tue",
       "reminder": true
+    },
+    {
+      "id": "0e58",
+      "text": "mango",
+      "day": "wed",
+      "reminder": false
     }
   ]
 }
